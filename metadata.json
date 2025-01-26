@@ -1,0 +1,12 @@
+{
+    "name": "NAMEK",
+    "symbol": "NAMEK",
+    "description": "Forget the moon—that's for paper hands. 🚀 We’re blasting off to Planet Namek: green skies, cosmic vibes, and gains for diamond hands only! 🌌🔥",
+    "image": "https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/image.png",
+    "attributes": [
+      {
+        "trait_type": "Item",
+        "value": "Developer Portal"
+      }
+    ]
+  }
