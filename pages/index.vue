@@ -11,7 +11,7 @@ export interface TimerProps {
 }
 
 const {
-	expireDate= '2025-02-01T00:00:00.000Z',
+	expireDate= '2025-02-07T00:00:00.000Z',
 	daysLabel = 'Days',
 	hoursLabel = 'Hours',
 	minutesLabel = 'Minutes',
