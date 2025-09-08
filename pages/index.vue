@@ -71,7 +71,6 @@ onMounted(() => startCountdown())
 onUnmounted(() => clearInterval(intervalId))
 </script>
 
-
 <template>
     <div class="box">
         <div class="main-bg">

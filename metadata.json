@@ -2,7 +2,6 @@
     "name": "Julius",
     "symbol": "Julius",
     "description": "Julius grizta",
-    "image": "https://raw.githubusercontent.com/daliuspamedytis1393/Namek-Coin/refs/heads/main/namek.jpg",
     "attributes": [
       {
         "trait_type": "Item",
