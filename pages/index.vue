@@ -11,11 +11,11 @@ export interface TimerProps {
 }
 
 const {
-	expireDate= '2025-02-07T00:00:00.000Z',
-	daysLabel = 'Days',
-	hoursLabel = 'Hours',
+	expireDate= '2025-11-14T00:00:00.000Z',
+	daysLabel = 'Dienos',
+	hoursLabel = 'Valandos',
 	minutesLabel = 'Minutes',
-	secondsLabel = 'Seconds',
+	secondsLabel = 'Sekundes',
 } = defineProps<TimerProps>()
 
 interface Timer {
@@ -83,9 +83,8 @@ onUnmounted(() => clearInterval(intervalId))
             </div>
         </div>
 
-        <img class="images" src="/public/images/namek-coin.png" />
+        <img class="images" src="/public/images/julius.jpg" />
 
-        <img class="images" src="/public/images/picolo.png" alt="">
 
         <div
             class="time-container"
@@ -125,7 +124,7 @@ onUnmounted(() => clearInterval(intervalId))
 
 .heading {
     z-index: 200000;
-    color: gold;
+    color: blue;
     font-size: 18px;
 }
 
@@ -169,13 +168,13 @@ onUnmounted(() => clearInterval(intervalId))
 .time-value {
   font-size: 120px;
   font-weight: bold;
-  color: gold;
+  color: black;
 }
 
 .unit-label {
   font-size: 30px;
   font-weight: bold;
-  color: whitesmoke;
+  color: black;
   text-transform: uppercase;
 }
 
@@ -214,8 +213,10 @@ onUnmounted(() => clearInterval(intervalId))
 
 .images {
     z-index: 2;
-    height: 600px;
-    width: 600px;
+    height: 1000px;
+    width: 1000px;
+    border-radius: 1000px;
+    border: 2px dashed black;
     position: absolute;
     z-index: 1311;
     top: 0;
@@ -268,7 +269,7 @@ onUnmounted(() => clearInterval(intervalId))
 .main-bg {
     height: 100vh;
     position: relative;
-    background: #000000;
+    background: red;
     /* background: #A1D4D1; */
 }
 
