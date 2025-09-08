@@ -2,76 +2,75 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 
 export interface TimerProps {
-	title?: string
-	expireDate: string
-	daysLabel: string
-	hoursLabel: string
-	minutesLabel: string
-	secondsLabel: string
+  title?: string
+  expireDate: string
+  daysLabel: string
+  hoursLabel: string
+  minutesLabel: string
+  secondsLabel: string
 }
 
 const {
-	expireDate= '2025-11-14T00:00:00.000Z',
-	daysLabel = 'Dienos',
-	hoursLabel = 'Valandos',
-	minutesLabel = 'Minutes',
-	secondsLabel = 'Sekundes',
+  expireDate = '2025-11-14T00:00:00.000Z',
+  daysLabel = 'Dienos',
+  hoursLabel = 'Valandos',
+  minutesLabel = 'Minutes',
+  secondsLabel = 'Sekundes',
 } = defineProps<TimerProps>()
 
 interface Timer {
-	days: string
-	hours: string
-	minutes: string
-	seconds: string
+  days: string
+  hours: string
+  minutes: string
+  seconds: string
 }
 
 const SECONDS_IN_A_DAY = 86400
 const SECONDS_IN_AN_HOUR = 3600
 const SECONDS_IN_A_MINUTE = 60
 
-const timeLeft = ref(0)
 const targetDate = ref(new Date(expireDate).getTime())
 
 const calculateTimeLeft = () => Math.max(0, targetDate.value - Date.now())
 
+const timeLeft = ref(calculateTimeLeft()) // 👈 initial value on load
+
 const formatTimeUnit = (value: number) => value.toString().padStart(2, '0')
 
 const parseTimeLeft = (millisecond: number): Timer => {
-	const totalSeconds = Math.floor(millisecond / 1000)
+  const totalSeconds = Math.floor(millisecond / 1000)
 
-	return {
-		days: Math.floor(totalSeconds / SECONDS_IN_A_DAY).toString(),
-		hours: formatTimeUnit(Math.floor((totalSeconds % SECONDS_IN_A_DAY) / SECONDS_IN_AN_HOUR)),
-		minutes: formatTimeUnit(Math.floor((totalSeconds % SECONDS_IN_AN_HOUR) / SECONDS_IN_A_MINUTE)),
-		seconds: formatTimeUnit(totalSeconds % SECONDS_IN_A_MINUTE),
-	}
+  return {
+    days: Math.floor(totalSeconds / SECONDS_IN_A_DAY).toString(),
+    hours: formatTimeUnit(Math.floor((totalSeconds % SECONDS_IN_A_DAY) / SECONDS_IN_AN_HOUR)),
+    minutes: formatTimeUnit(Math.floor((totalSeconds % SECONDS_IN_AN_HOUR) / SECONDS_IN_A_MINUTE)),
+    seconds: formatTimeUnit(totalSeconds % SECONDS_IN_A_MINUTE),
+  }
 }
 
 let intervalId: ReturnType<typeof setInterval>
 
 const startCountdown = () => {
-	timeLeft.value = calculateTimeLeft()
-
-	intervalId = setInterval(() => {
-		timeLeft.value = calculateTimeLeft()
-	}, 1000)
+  intervalId = setInterval(() => {
+    timeLeft.value = calculateTimeLeft()
+  }, 1000)
 }
 
 interface TimerUnit {
-	label: string
-	name: keyof Timer
+  label: string
+  name: keyof Timer
 }
 const timeUnits: TimerUnit[] = [
-	{ label: daysLabel, name: 'days' },
-	{ label: hoursLabel, name: 'hours' },
-	{ label: minutesLabel, name: 'minutes' },
-	{ label: secondsLabel, name: 'seconds' },
+  { label: daysLabel, name: 'days' },
+  { label: hoursLabel, name: 'hours' },
+  { label: minutesLabel, name: 'minutes' },
+  { label: secondsLabel, name: 'seconds' },
 ] as const
 
 onMounted(() => startCountdown())
 onUnmounted(() => clearInterval(intervalId))
-
 </script>
+
 
 <template>
     <div class="box">
